@@ -4,6 +4,7 @@
   "description": "\u0016\u0016Particle swarm optimization algorithm",
   "main": "index.js",
   "scripts": {
+    "start":"node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,7 +17,12 @@
   "author": "SunShinewyf",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^0.28.2",
     "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "style-loader": "^0.18.1",
+    "url-loader": "^0.5.8",
     "webpack": "^2.6.1"
   }
 }
