@@ -14,5 +14,9 @@
     "pso"
   ],
   "author": "SunShinewyf",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.15.3",
+    "webpack": "^2.6.1"
+  }
 }
