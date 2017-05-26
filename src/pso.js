@@ -15,36 +15,39 @@
     function Particle(position,velocity,options){
         this.position = position;
         this.velocity = velocity;
-        this.popSize = options.popSize || 200;
-        this.bestPosition = new Array(this.popSize);
+        this.w = options.w;
+        this.c1 = options.c1;
+        this.c2 = options.c2;
+        this.dim = options.dim;
+
+
+        this.bestPosition = new Array(this.dim);
+        this.bestFeasible = null;
+
+       
     }
 
     //粒子的原型设置
     Particle.prototype = {
-		storePosition: function () {
-			this.bestPosition = this.position.slice(0);
-		},
-
-		getPosition: function () {
-			return this.position.slice(0);
-		},
-
-		getBestPosition: function () {
-			return this.bestPosition.slice(0);
-		},
-        
         /**
          * desc:更新粒子速度
          */
-        updateVelocity: function(){
-
+        updateVelocity: function(gbest){
+            this.velocity.forEach(function(eachPos,index){
+                let inertia = this.velocity[index] * this._w;
+                let socialInfluence = (gbest.position[index] - eachPos) * this._c1 * Math.random();
+                let selfInfluence = (this.bestPosition[index] - eachPos)* this._c2 * Math.random();
+                this.velocity[index] = inertia + socialInfluence + selfInfluence;
+            },this);
         },
 
         /**
          * desc:更新粒子位置
          */
         updatePosition: function(){
-
+            this.position.forEach(function(eachPos,index){
+                this.position[index] += eachPos;
+            },this);
         }
 	};
     
@@ -55,13 +58,13 @@
      */
     Particle.createOfRandom = function(area,options){
         var position = area.map(function(interval){
-            return Math.random()*(interval.end - interval.start);
+            return interval.start + (Math.random()*(interval.end - interval.start));
         })
 
         var velocity = area.map(function(interval){
             return Math.random()*(interval.end - interval.start);
         })
-
+       
        return new Particle(position,velocity,options);
     }
 
@@ -79,9 +82,45 @@
      * 粒子优化的构造函数
      */
     function Optimizer(){
-        
+        this._particles = null; //初始粒子
+        this._gbest = null; //每次迭代的全局最优值
+        this._fitness = -Infinity; //适应度函数
+        this._options = {  //优化时的一些参数
+            c1:1.49445,  //加速因子
+            c2:1.49445,
+            w:0.9, //惯性系数
+            maxGen:200, //种群最大迭代次数
+            popSize:40  //种群大小
+        }
     }
 
+    Optimizer.prototype = {
+        setOptions: function(options){
+            this._options.c1 = options.c1 ? options.c1 : this._options.c1;
+            this._options.c2 = options.c2 ? options.c2 : this._options.c2;
+            this._options.w = options.w ? options.w : this._options.w;
+            this._options.maxGen = options.maxGen ? options.maxGen : this._options.maxGen;
+            this._options.popSize = options.popSize ? options.popSize : this._options.popSize;
+        },
+
+        init:function(popSize,genOptions){
+            var generator = genOptions instanceof Function ? 
+                genOptions : 
+                function(){
+                    return Particle.createOfRandom(genOptions,this._options);
+                }.bind(this);
+            
+               this._fitness = -Infinity;
+               this._gbest = null;
+
+               this._particles = [];
+               for(var i = 0; i < pppSize; i++ ){
+                   this._particles.push(generator())
+               }
+        }
+    }   
+ 
+    
     if (typeof define === 'function' && define.amd) {
 		// + with *RequireJS*
 		define('pso/Interval', function () { return Interval; });
