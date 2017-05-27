@@ -30,6 +30,13 @@
 
     //粒子的原型设置
     Particle.prototype = {
+        storePosition: function () {
+			this.bestPosition = this.position.slice(0);
+		},
+
+        getPosition: function () {
+			return this.position.slice(0);
+		},
         /**
          * desc:更新粒子速度
          */
@@ -85,8 +92,8 @@
     function Optimizer(){
         this._particles = null; //初始粒子
         this._fitnessFunction = null; //适应度函数
-        this._gbest = null; //每次迭代的全局最优值
-        this._fitness = -Infinity; //适应度函数
+        this._gbest = -Infinity; //每次迭代的全局最优值
+        this._positionBest = null; //适应度函数
         this._options = {  //优化时的一些参数
             c1:1.49445,  //加速因子
             c2:1.49445,
@@ -138,8 +145,15 @@
         //迭代完成
         completeStep:function(){
             this._particles.forEach(function(particle){
-                if(particle.)
-            })
+                if(particle.fitness > particle.pbest){
+                    particle.pbest = particle.fitness;
+                    particle.storePosition();
+                }
+                if(particle.pbest > this._gbest){
+                    this._gbest = particle.pbest;
+                    this._positionBest = particle.getPosition();
+                }
+            },this);
         }
     }   
  
