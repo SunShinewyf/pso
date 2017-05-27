@@ -22,7 +22,8 @@
 
 
         this.bestPosition = new Array(this.dim);
-        this.bestFeasible = null;
+        this.fitness = -Infinity;  //每次迭代的适应度
+        this.pbest = -Infinity; //每次迭代的最优适应度
 
        
     }
@@ -83,6 +84,7 @@
      */
     function Optimizer(){
         this._particles = null; //初始粒子
+        this._fitnessFunction = null; //适应度函数
         this._gbest = null; //每次迭代的全局最优值
         this._fitness = -Infinity; //适应度函数
         this._options = {  //优化时的一些参数
@@ -103,6 +105,7 @@
             this._options.popSize = options.popSize ? options.popSize : this._options.popSize;
         },
 
+        //初始化函数
         init:function(popSize,genOptions){
             var generator = genOptions instanceof Function ? 
                 genOptions : 
@@ -117,6 +120,26 @@
                for(var i = 0; i < pppSize; i++ ){
                    this._particles.push(generator())
                }
+        },
+
+        //设置适应度函数
+        setFitnessFunction:function(func){
+            this._fitnessFunction = func;
+        },
+        
+        //每一次的迭代函数
+        step: function(){
+            this._particles.forEach(function(particle){
+                particle._fitness = this._fitnessFunction(particle.position);
+            },this);
+            this.completeStep();
+        },
+
+        //迭代完成
+        completeStep:function(){
+            this._particles.forEach(function(particle){
+                if(particle.)
+            })
         }
     }   
  
