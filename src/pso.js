@@ -154,6 +154,16 @@
                     this._positionBest = particle.getPosition();
                 }
             },this);
+
+            //更新速度信息
+            this._particles.forEach(function(particle,index){
+                particle.updateVelocity(this._gbest);
+            },this);
+
+            //更新位置信息
+            this._particles.forEach(function(particle){
+                particle.updatePosition();
+            })
         }
     }   
  

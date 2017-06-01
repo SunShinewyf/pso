@@ -3,6 +3,7 @@ var PORT = 3000;
 var http = require('http');
 var url=require('url');
 var fs=require('fs');
+var mine=require('./mine').types;
 var path=require('path');
 
 var server = http.createServer(function (request, response) {
