@@ -17,9 +17,10 @@ header p{
     margin-left:40px;
 }
 .sidebar{
-    width:260px;
+    width:27.5%;
     background-color: rgb(240,240,240);
     height: 610px;
+    float: left;
 }
 
 .sideP{
@@ -105,4 +106,9 @@ h4{
     font-size: 14px;
     text-align: center;
     border-radius: 4px;
+}
+.app{
+    width:72%;
+    height: 610px;
+    float: right;
 }

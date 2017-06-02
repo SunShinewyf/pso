@@ -14,10 +14,10 @@
         <div class="sidebar">
             <a class="sideP">目标函数</a>
             <ul class="sideUl">
-                <a><li>时间成本</li></a>
-                <a><li>资金成本</li></a>
-                <a><li>质量系数</li></a>
-                <a><li>安全系数</li></a>
+                <a><li>时间成本[T]</li></a>
+                <a><li>资金成本[M]</li></a>
+                <a><li>质量系数[S]</li></a>
+                <a><li>安全系数[Q]</li></a>
             </ul>
             <div class="line"></div>
             <div class="side-footer">
@@ -51,11 +51,16 @@
             </div>
             <div class="line"></div>
             <div class="action">
-               <button class="optimize">optimize</button>
-               <button class="stop">stop</button>
-               <button class="reset">reset</button>
+               <button id="optimize">optimize</button>
+               <button id="stop">stop</button>
+               <button id="reset">reset</button>
             </div>
+        </div>
+        <div class="app">
+            <canvas id="canvasPos"></canvas>
         </div>
     </div>
 </body>
 </html>
+<script src="src/pso.js"></script>
+<script src="src/index.js"></script>
