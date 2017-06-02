@@ -8,7 +8,20 @@
     var canvas,con2d;
     var optimizer = new pso.Optimizer();
     var iteration = 0;
+    
+    //优化函数
+    function start(){
+        console.log('start');
+    }
+    //结束函数
+    function stop(){
+        console.log('stop');
+    }
 
+    //重置函数
+    function reset(){
+        console.log('reset');
+    }
     //更新粒子群算法中的参数
     function updateParameters(){
         maxGen = parseInt(document.getElementById('maxGen').value);
@@ -27,7 +40,7 @@
         });
     }
     function setup(){
-        canvas = document.getElementById('canvaspso');
+        canvas = document.getElementById('canvasPos');
         con2d = canvas.getContext('2d');
 
         document.getElementById('optimize').addEventListener('click',start);
