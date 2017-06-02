@@ -2,8 +2,8 @@
 <html>
 <head lang="en">
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="assets/normalize.css">
-    <link rel="stylesheet" href="assets/index.css">
+	<link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 	<title>Particle Swarm Optimization</title>
 </head>
 <body>
@@ -13,7 +13,6 @@
         </header>
         <div class="sidebar">
             <a class="sideP">目标函数</a>
-            <div class="line"></div>
             <ul class="sideUl">
                 <a><li>时间成本</li></a>
                 <a><li>资金成本</li></a>
@@ -23,8 +22,39 @@
             <div class="line"></div>
             <div class="side-footer">
                 <h4>适应度函数</h4>
+                <p>4[G] + 3[P] + 2[B] + [C]</p>
             </div>
             <div class="line"></div>
+            <div class="parameter">
+                <h4>参数调整</h4>
+                <div class="area">
+                    <label for="c1">加速因子c1:</label>
+                    <input id="c1" type="number" min="0" max="1.2" value="0.6" step="0.1">
+                </div>
+                <div class="area">
+                    <label for="c2">加速因子c2:</label>
+                    <input id="c2" type="number" min="0" max="1.2" value="0.6" step="0.1">
+                </div>
+                <div class="area">
+                    <label for="w">惯性系数:</label>
+                    <input id="w" type="number" min="0" max="1.2" value="0.6" step="0.1">
+                </div>
+                <div class="area">
+                    <label for="maxGen">最大迭代次数:</label>
+                    <input id="maxGen" type="number" min="0" max="1000" value="400" step="100">
+                </div>
+                <div class="area">
+                    <label for="size">种群大小:</label>
+                    <input id="size" type="number" min="0" max="800" value="400" step="100">
+                </div>
+
+            </div>
+            <div class="line"></div>
+            <div class="action">
+               <button class="optimize">optimize</button>
+               <button class="stop">stop</button>
+               <button class="reset">reset</button>
+            </div>
         </div>
     </div>
 </body>
