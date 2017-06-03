@@ -81,7 +81,7 @@
      * @param {*开始位置} start 
      * @param {*结束位置} end 
      */
-    function interval(start,end){
+    function Interval(start,end){
         this.start = start;
         this.end = end;
     }
@@ -169,12 +169,12 @@
  
     
     if (typeof define === 'function' && define.amd) {
-		// define('pso/Interval', function () { return Interval; });
+		define('pso/Interval', function () { return Interval; });
 		define('pso/Particle', function () { return Particle; });
 		define('pso/Optimizer', function () { return Optimizer; });
 	} else {
 		var pso = {
-			// Interval: Interval,
+			Interval: Interval,
 			Particle: Particle,
 			Optimizer: Optimizer
 		};

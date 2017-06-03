@@ -112,3 +112,9 @@ h4{
     height: 610px;
     float: right;
 }
+#canvasPos{
+    width:96%;
+    height: 68%;
+    margin:50px 2%;
+    border:1px solid #cacaca;
+}
