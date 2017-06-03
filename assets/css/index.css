@@ -17,7 +17,7 @@ header p{
     margin-left:40px;
 }
 .sidebar{
-    width:27.5%;
+    width:260px;
     background-color: rgb(240,240,240);
     height: 610px;
     float: left;
@@ -108,13 +108,13 @@ h4{
     border-radius: 4px;
 }
 .app{
-    width:72%;
+    width:840px;
     height: 610px;
-    float: right;
+    float: left;
 }
 #canvasPos{
     width:96%;
     height: 68%;
-    margin:50px 2%;
+    margin:20px 2%;
     border:1px solid #cacaca;
 }

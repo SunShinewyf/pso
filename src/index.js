@@ -9,9 +9,16 @@
     var optimizer = new pso.Optimizer();
     var iteration = 0;
     var c1,c2,w,maxGen,size;
-    var fitnessFunction = null;
+    var fitnessFunction =  function (x) { return Math.cos(Math.PI * 2 * x[0]) * 5 - Math.pow(x[0], 2); };
     var domain = new pso.Interval(-5.12,5.12);
     var particles = [];
+
+    maxGen = parseInt(document.getElementById('maxGen').value);
+    size = parseInt(document.getElementById('size').value);
+
+    c1 = parseFloat(document.getElementById('c1').value);
+    c2 = parseFloat(document.getElementById('c2').value);
+    w = parseFloat(document.getElementById('w').value);
     
     //优化函数
     function start(){
@@ -43,6 +50,7 @@
     }
     //画图函数
     function drawFunction(){
+        
         var cy = canvas.height / 2;
         var ax = canvas.width / (size-1);
 
@@ -61,6 +69,13 @@
         }
         con2d.stroke();
     }
+
+    function drawLine(x1,y1,x2,y2){
+        con2d.moveTo(x1,y1);
+        con2d.moveTo(x2,y2);
+    }
+
+
     //更新粒子群算法中的参数
     function updateParameters(){
         maxGen = parseInt(document.getElementById('maxGen').value);
