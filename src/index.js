@@ -37,7 +37,7 @@
     //更新粒子位置
     function updateParticles(){
         var ax = (domain.end - domain.start) / size;
-        for(var i=0,x=domain.start;i<=size;i++,x+=ax){
+        for(var i = 0, x = domain.start; i <= size; i++, x += ax){
             particles[i] = fitnessFunction([x]);
         }
     }
@@ -54,20 +54,20 @@
         var cy = canvas.height / 2;
         var ax = canvas.width / (size-1);
 
-        con2d.fillStyle = '#FFF';
-        con2d.fillRect(0,0,canvas.width,canvas.height);
+       	con2d.fillStyle = '#FFF';
+		con2d.fillRect(0, 0, canvas.width, canvas.height);
 
-        con2d.strokeStyle = '#555';
-        con2d.lineWidth = 1.5;
+		con2d.strokeStyle = '#555';
+		con2d.lineWidth = 1.5;
 
-        con2d.beginPath();
-        for(var i = 0,x = ax ; i < particles.length ; i++ , x += ax){
-            drawLine(
-                x - ax,cy - particles[i-1] * ax,
-                x, cy - particles[i] * ax
-            );
-        }
-        con2d.stroke();
+       	con2d.beginPath();
+		for(var i = 1, x = ax; i < particles.length; i++, x += ax) {
+			drawLine(
+				x - ax, cy - particles[i - 1] * ax,
+				x, cy - particles[i] * ax
+			);
+		}
+		con2d.stroke();
     }
 
     function drawLine(x1,y1,x2,y2){
@@ -94,7 +94,7 @@
         });
     }
     function setup(){
-        canvas = document.getElementById('canvasPos');
+        canvas = document.getElementById('canvasPso');
         con2d = canvas.getContext('2d');
 
         document.getElementById('optimize').addEventListener('click',start);
